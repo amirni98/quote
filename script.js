@@ -29,23 +29,20 @@ function colorPick() {
 colorPick();                        
 
 let apiQuotes = [];
-let timer = false;
-
-
 
 function loading() {
-    loader.hidden = false;
-    quoteContainer.hidden = true;
+    loader.hidden           = false;
+    quoteContainer.hidden   = true;
 }
 
 function loaded() {
-    loader.hidden = true;
-    quoteContainer.hidden = false;
+    loader.hidden           = true;
+    quoteContainer.hidden   = false;
 }
 
 function newQuote() {
     loading();
-    const quote = apiQuotes[Math.floor(Math.random()*apiQuotes.length)];
+    const quote     = apiQuotes[Math.floor(Math.random()*apiQuotes.length)];
     const quoteText = globalThis.quote;
 
     if(!quote.author) {
@@ -91,7 +88,6 @@ function tweetQuote() {
 
 button.addEventListener('click', newQuote);
 twitter.addEventListener('click', tweetQuote);
-
 
 
 getQuotes();
