@@ -22,7 +22,6 @@ const colors            = [ ['#00063b',`url("data:image/svg+xml,%3Csvg width='18
 
 function colorPick() {
     const color = Math.round(Math.random()*(colors.length-1));
-    console.log(color);
     body.style.backgroundColor = colors[color][0];
     body.style.backgroundImage = colors[color][1];
     }
