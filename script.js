@@ -29,10 +29,7 @@ function colorPick() {
 colorPick();                        
 
 let apiQuotes = [];
-
-
-
-
+let timer = false;
 
 
 
@@ -66,18 +63,24 @@ function newQuote() {
     loaded();
 }
 
-async function getQuotes() {
+function getQuotes() {
     loading();
     const url = "https://type.fit/api/quotes";
-    try {
-        const response = await fetch(url);
-        apiQuotes = await response.json();
-        newQuote();
-        //console.log(apiQuotes);
 
-    } catch (error) {
-        
-    }
+    const response = fetch(url).then((data) => {
+        data.json().then(data => {
+            apiQuotes = data;
+            newQuote();
+        });
+    }).catch (e => {
+        apiQuotes = offline;
+        newQuote();
+        console.log("it's offline");
+        //console.log(e);
+    });
+    
+    //console.log(apiQuotes);
+
 }
 
 
@@ -88,6 +91,8 @@ function tweetQuote() {
 
 button.addEventListener('click', newQuote);
 twitter.addEventListener('click', tweetQuote);
+
+
 
 getQuotes();
 
